@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Bharu!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #ffe6e8;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+            position: relative;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        button {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 71, 126, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #ff2a66;
+            transform: scale(1.05);
+        }
+
+        /* Cake & Candle Animation */
+        .cake-container {
+            position: relative;
+            margin: 30px auto;
+            width: 120px;
+            height: 100px;
+        }
+
+        .cake {
+            position: absolute;
+            bottom: 0;
+            width: 120px;
+            height: 70px;
+            background: #ffb3c1;
+            border-radius: 10px 10px 0 0;
+            box-shadow: inset 0 12px 0 #ff85a1;
+        }
+
+        .candle {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 30px;
+            background: #ff477e;
+            border-radius: 3px;
+        }
+
+        .flame {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 18px;
+            background: #ff9100;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 10px #ff9100;
+            animation: flicker 0.6s infinite alternate;
+        }
+
+        .flame.blown-out {
+            display: none;
+        }
+
+        @keyframes flicker {
+            from { transform: translateX(-50%) scale(1); }
+            to { transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* Memory Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .photo-placeholder {
+            background: #ffe6e8;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff477e;
+            font-weight: bold;
+            font-size: 14px;
+            border: 2px dashed #ff85a1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Page 1 -->
+        <div class="page active" id="page1">
+            <h1>HAPPY BIRTHDAY BHARU ❤️</h1>
+            <p>A special digital birthday surprise is waiting just for you!</p>
+            <div class="cake-container">
+                <div class="candle">
+                    <div class="flame" id="flame"></div>
+                </div>
+                <div class="cake"></div>
+            </div>
+            <button onclick="blowCandle()">Blow the Candle 💨</button>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page" id="page2">
+            <h1>Make a Wish! 🌟</h1>
+            <p>The candle is blown! May all your dreams and secret wishes come true this year, Bharu.</p>
+            <button onclick="nextPage(3)">Next Surprise ➡️</button>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page" id="page3">
+            <h1>Our Favorite Memories 📸</h1>
+            <p>Every moment spent with you is special. Here are a few memories we cherish!</p>
+            <div class="gallery">
+                <div class="photo-placeholder">Memory 1</div>
+                <div class="photo-placeholder">Memory 2</div>
+                <div class="photo-placeholder">Memory 3</div>
+                <div class="photo-placeholder">Memory 4</div>
+            </div>
+            <button onclick="nextPage(4)">Continue ➡️</button>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page" id="page4">
+            <h1>Reasons You Are Special ✨</h1>
+            <p>💖 Your beautiful smile that brightens any day.<br>
+               💖 Your kind and caring heart.<br>
+               💖 The endless laughter and fun moments we share!</p>
+            <button onclick="nextPage(5)">Next ➡️</button>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page" id="page5">
+            <h1>A Secret Message 💌</h1>
+            <p>You are truly one of a kind. Never stop shining, never stop being as amazing as you are today.</p>
+            <button onclick="nextPage(6)">One More Thing... ➡️</button>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page" id="page6">
+            <h1>Gift Unlocking... 🎁</h1>
+            <p>Tap the box below to claim your birthday gift/hug!</p>
+            <button onclick="nextPage(7)">Open Gift 🎁</button>
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page" id="page7">
+            <h1>Have the Best Day Ever! 🎉</h1>
+            <p>Wishing you endless joy, love, happiness, and success always!</p>
+            <p><b>Happy Birthday Once Again, Bharu! 🎂✨</b></p>
+            <button onclick="nextPage(1)">Restart 🔄</button>
+        </div>
+    </div>
+
+    <script>
+        function blowCandle() {
+            document.getElementById('flame').classList.add('blown-out');
+            setTimeout(function() {
+                nextPage(2);
+            }, 1000);
+        }
+
+        function nextPage(pageNumber) {
+            var pages = document.querySelectorAll('.page');
+            pages.forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
